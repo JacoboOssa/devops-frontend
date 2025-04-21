@@ -4,10 +4,7 @@ trigger:
   branches:
     include:
     - main # Or your default branch
-  paths:
-    include:
-    - frontend/* # Trigger only if files in frontend folder change
-
+  
 resources:
 - repo: self
 
