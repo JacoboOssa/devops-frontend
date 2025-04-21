@@ -1,4 +1,4 @@
-# azure-pipelines.yml for frontend
+# azure-pipelines.yml for frontend.
 
 trigger:
   branches:
@@ -17,8 +17,8 @@ variables:
   dockerRegistryServiceConnection: 'YourACRServiceConnectionName'
   acrLoginServer: 'ingesoft5-bbfcc8fmg7bvghf9.azurecr.io' # From the image
   imageRepository: 'frontend' # Name for the image in ACR
-  dockerfilePath: '$(Build.SourcesDirectory)/frontend/Dockerfile'
-  buildContextPath: '$(Build.SourcesDirectory)/frontend'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  buildContextPath: '$(Build.SourcesDirectory)'
   tag: '$(Build.BuildId)'
 
 stages:
