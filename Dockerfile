@@ -1,7 +1,7 @@
 # ---- Build Stage ----
 # Use a Node.js version compatible with the project requirements (Node 8.17.0 specified in README)
 # Using a slightly newer LTS version for better support, adjust if needed.
-FROM node:18-alpine AS builder
+FROM node:8-alpine AS builder
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY package*.json ./
 
 # Install dependencies
 # Using --legacy-peer-deps might be necessary for older projects
-RUN npm install --legacy-peer-deps
+RUN apk add --no-cache python2 make g++
 
 # Copy the rest of the application source code
 COPY . .
@@ -21,7 +21,7 @@ RUN npm run build
 
 # ---- Production Stage ----
 # Use a lightweight Nginx image
-FROM nginx:1.25-alpine
+FROM nginx:stable-alpine AS production-stage
 
 # Copy the built static files from the builder stage to the Nginx HTML directory
 COPY --from=builder /app/dist /usr/share/nginx/html
