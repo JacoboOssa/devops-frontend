@@ -78,3 +78,4 @@ stages:
             --name $(containerAppName) \
             --resource-group $(resourceGroupName) \
             --image $(acrLoginServer)/$(imageRepository):$(tag)
+            --target-port 8080
