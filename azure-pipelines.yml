@@ -77,4 +77,4 @@ stages:
           az containerapp update \
             --name $(containerAppName) \
             --resource-group $(resourceGroupName) \
-            --image $(imageRepository):latest
+            --image $(imageRepository):$(tag)
