@@ -54,7 +54,7 @@ stages:
       displayName: Push image
       inputs:
         command: push
-        repository: '$(acrLoginServer)/$(imageRepository)' # Explicitly use full repository path
+        repository: $(imageRepository) # Use the local image name built previously
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
