@@ -77,4 +77,4 @@ stages:
           az containerapp update \
             --name $(containerAppName) \
             --resource-group $(resourceGroupName) \
-            --image $(imageRepository):$(tag)
+            --image $(acrLoginServer)/$(imageRepository):$(tag)
