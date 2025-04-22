@@ -15,11 +15,16 @@ variables:
   # Azure Container Registry connection details
   # IMPORTANT: Replace 'YourACRServiceConnectionName' with the actual name of your ACR Service Connection in Azure DevOps
   dockerRegistryServiceConnection: 'ACR-ingesoft5acrregistry-Connection' # Updated Service Connection Name
-  acrLoginServer: 'ingesoft5acrregistry.azurecr.io' # Updated ACR Login Server
+  acrLoginServer: 'testacrgyvpcp.azurecr.io' # Updated ACR Login Server
   imageRepository: 'frontend' # Name for the image in ACR
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   buildContextPath: '$(Build.SourcesDirectory)'
   tag: '$(Build.BuildId)'
+  
+  # Container App
+  containerAppName: 'test-frontend-ca' # Nombre exacto de tu Container App
+  resourceGroupName: 'rg-app-testing'  # RG donde está la Container App
+  azureResourceManagerConnection: 'AzureRM-ContainerApps' # Connection a tu suscripción de Azure
 
 stages:
 - stage: Build
@@ -42,7 +47,7 @@ stages:
       displayName: Build image
       inputs:
         command: build
-        repository: $(imageRepository) # Build locally first
+        repository: $(acrLoginServer)/$(imageRepository) # Build locally first
         dockerfile: $(dockerfilePath)
         buildContext: $(buildContextPath)
         tags: |
@@ -54,8 +59,22 @@ stages:
       displayName: Push image
       inputs:
         command: push
-        repository: $(imageRepository) # Use the local image name built previously
+        repository: $(acrLoginServer)/$(imageRepository) # Use the local image name built previously
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
           latest
+    
+    # Deploy a Container App
+    - task: AzureCLI@2
+      displayName: Deploy to Azure Container App
+      inputs:
+        azureSubscription: $(azureResourceManagerConnection)
+        scriptType: bash
+        scriptLocation: inlineScript
+        inlineScript: |
+          echo "Desplegando nueva imagen a Container App..."
+          az containerapp update \
+            --name $(containerAppName) \
+            --resource-group $(resourceGroupName) \
+            --image $(acrLoginServer)/$(imageRepository):$(tag)
