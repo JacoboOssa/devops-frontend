@@ -47,7 +47,7 @@ stages:
       displayName: Build image
       inputs:
         command: build
-        repository: $(acrLoginServer)/$(imageRepository) # Build locally first
+        repository: $(imageRepository) # Build locally first
         dockerfile: $(dockerfilePath)
         buildContext: $(buildContextPath)
         tags: |
@@ -59,7 +59,7 @@ stages:
       displayName: Push image
       inputs:
         command: push
-        repository: $(acrLoginServer)/$(imageRepository) # Use the local image name built previously
+        repository: $(imageRepository) # Use the local image name built previously
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
@@ -77,4 +77,4 @@ stages:
           az containerapp update \
             --name $(containerAppName) \
             --resource-group $(resourceGroupName) \
-            --image $(acrLoginServer)/$(imageRepository):$(tag)
+            --image $(imageRepository):latest
