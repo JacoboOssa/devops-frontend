@@ -77,5 +77,5 @@ stages:
           az containerapp update \
             --name $(containerAppName) \
             --resource-group $(resourceGroupName) \
-            --image $(acrLoginServer)/$(imageRepository):$(tag)
+            --image $(acrLoginServer)/$(imageRepository):$(tag) \
             --target-port 8080
