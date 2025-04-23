@@ -9,6 +9,8 @@ Vue.use(BootstrapVue)
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 
+Vue.http.options.root = process.env.TODOS_API_ADDRESS
+
 import App from '@/components/App'
 import router from './router'
 import store from './store'
