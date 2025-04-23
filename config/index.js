@@ -29,11 +29,11 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/login': {
-        target: process.env.AUTH_API_ADDRESS || 'http://127.0.0.1:8081',
+        target: process.env.AUTH_API_ADDRESS || 'https://test-auth-api-ca.greensand-b550d21a.eastus.azurecontainerapps.io',
         secure: false
       },
       '/todos': {
-        target: process.env.TODOS_API_ADDRESS || 'http://127.0.0.1:8082',
+        target: process.env.TODOS_API_ADDRESS || 'https://test-todos-api-ca.greensand-b550d21a.eastus.azurecontainerapps.io',
         secure: false
       },
       /*
