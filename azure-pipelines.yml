@@ -56,6 +56,9 @@ stages:
         tags: |
           $(tag)
           latest
+        arguments: >- 
+          --build-arg ARG_AUTH_API_ADDRESS=$(AUTH_API_URL)
+          --build-arg ARG_TODOS_API_ADDRESS=$(TODOS_API_URL)
 
     # Push the image
     - task: Docker@2
