@@ -20,6 +20,9 @@ variables:
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   buildContextPath: '$(Build.SourcesDirectory)'
   tag: '$(Build.BuildId)'
+
+  TODOS_API_URL: 'https://test-todos-api-ca.greensand-b550d21a.eastus.azurecontainerapps.io'
+  AUTH_API_URL: 'https://test-auth-api-ca.greensand-b550d21a.eastus.azurecontainerapps.io'
   
   # Container App
   containerAppName: 'test-frontend-ca' # Nombre exacto de tu Container App
