@@ -86,6 +86,13 @@ export default {
     loadTasks () {
       this.isProcessing = true
       this.errorMessage = ''
+
+    // Usando la variable de entorno para obtener la URL de la API
+    const apiUrl = process.env.TODOS_API_ADDRESS + '/todos';
+
+    // Log para verificar la URL que se está utilizando
+    console.log("Haciendo GET a:", apiUrl);
+      
       this.$http.get('/todos').then(response => {
         for (var i in response.body) {
           this.tasks.push(response.body[i])
