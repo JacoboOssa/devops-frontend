@@ -5,11 +5,6 @@ FROM node:8-alpine AS build-stage
 
 WORKDIR /app
 
-ARG ARG_AUTH_API_ADDRESS
-ARG ARG_TODOS_API_ADDRESS
-
-ENV VUE_APP_AUTH_API_ADDRESS=${ARG_AUTH_API_ADDRESS}
-ENV VUE_APP_TODOS_API_ADDRESS=${ARG_TODOS_API_ADDRESS}
 
 # Install Python 2 and build tools needed by node-gyp (for node-sass)
 RUN apk add --no-cache python2 make g++
@@ -23,7 +18,6 @@ RUN npm run build
 # ---- Production Stage ----
 FROM nginx:stable-alpine AS production-stage
 COPY --from=build-stage /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy your custom Nginx config to overwrite the default
 # Assumes your custom file is named nginx.conf and is in the same directory as the Dockerfile
