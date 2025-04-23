@@ -1,3 +1,4 @@
+/*
 import {
   Tracer,
   BatchRecorder,
@@ -7,6 +8,7 @@ import {
 import {HttpLogger} from 'zipkin-transport-http'
 import {zipkinInterceptor} from 'zipkin-instrumentation-vue-resource'
 const ZIPKIN_URL = window.location.protocol + '//' + window.location.host + '/zipkin'
+*/
 /**
 * Tracing plugin that uses Zipkin. Initiates new traces with outgoing requests
 * and injects appropriate headers.
@@ -24,6 +26,7 @@ export default {
    * @return {void}
    */
   install (Vue, options) {
+    /*
     const serviceName = 'frontend'
     const tracer = new Tracer({
       ctxImpl: new ExplicitContext(),
@@ -38,5 +41,6 @@ export default {
 
     const interceptor = zipkinInterceptor({tracer, serviceName})
     Vue.http.interceptors.push(interceptor)
+    */
   }
 }
