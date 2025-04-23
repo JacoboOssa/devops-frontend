@@ -93,7 +93,7 @@ export default {
     // Log para verificar la URL que se está utilizando
     console.log("Haciendo GET a:", apiUrl);
       
-      this.$http.get('/todos').then(response => {
+      this.$http.get(apiUrl).then(response => {
         for (var i in response.body) {
           this.tasks.push(response.body[i])
         }
