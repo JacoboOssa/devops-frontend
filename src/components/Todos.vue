@@ -106,6 +106,8 @@ export default {
         this.isProcessing = true
         this.errorMessage = ''
 
+        const apiUrl = process.env.TODOS_API_ADDRESS + '/todos';
+
         var task = {
           content: this.newTask
         }
@@ -126,8 +128,10 @@ export default {
 
       this.isProcessing = true
       this.errorMessage = ''
+      const apiUrl = process.env.TODOS_API_ADDRESS + '/todos/';
 
-      this.$http.delete(apiUrl + '/' + item.id).then(response => {
+
+      this.$http.delete(apiUrl + item.id).then(response => {
         this.isProcessing = false
         this.tasks.splice(index, 1)
       }, error => {
