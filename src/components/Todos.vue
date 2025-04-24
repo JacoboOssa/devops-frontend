@@ -87,11 +87,8 @@ export default {
       this.isProcessing = true
       this.errorMessage = ''
 
-    // Usando la variable de entorno para obtener la URL de la API
     const apiUrl = process.env.TODOS_API_ADDRESS + '/todos';
 
-    // Log para verificar la URL que se está utilizando
-    console.log("Haciendo GET a:", apiUrl);
       
       this.$http.get(apiUrl).then(response => {
         for (var i in response.body) {
@@ -113,7 +110,7 @@ export default {
           content: this.newTask
         }
 
-        this.$http.post('/todos', task).then(response => {
+        this.$http.post(apiUrl, task).then(response => {
           this.newTask = ''
           this.isProcessing = false
           this.tasks.push(task)
@@ -130,7 +127,7 @@ export default {
       this.isProcessing = true
       this.errorMessage = ''
 
-      this.$http.delete('/todos/' + item.id).then(response => {
+      this.$http.delete(apiUrl + '/' + item.id).then(response => {
         this.isProcessing = false
         this.tasks.splice(index, 1)
       }, error => {
