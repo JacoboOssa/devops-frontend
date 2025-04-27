@@ -8,7 +8,7 @@ import decode from 'jwt-decode'
  *    and maybe nginx in production (cleaner calls and avoids CORS issues).
  */
 const AUTH_API_ADDRESS = process.env.AUTH_API_ADDRESS || (window.location.protocol + '//' + window.location.host)
-const LOGIN_URL = AUTH_API_ADDRESS + '/login'
+const LOGIN_URL = AUTH_API_ADDRESS + '/auth/login
 const ROLE_ADMIN = 'ADMIN'
 
 /**
