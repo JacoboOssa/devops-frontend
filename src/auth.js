@@ -61,10 +61,11 @@ export default {
       
     }
     const headers = {
+      'Content-Type': 'application/json'
       'Ocp-Apim-Subscription-Key': SUBSCRIPTION_KEY
     }
 
-    return Vue.http.post(LOGIN_URL, params)
+    return Vue.http.post(LOGIN_URL, params, { headers })
       .then((response) => {
         this._storeToken(response)
 
