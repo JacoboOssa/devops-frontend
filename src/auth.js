@@ -61,7 +61,7 @@ export default {
       
     }
     const headers = {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
       'Ocp-Apim-Subscription-Key': SUBSCRIPTION_KEY
     }
 
