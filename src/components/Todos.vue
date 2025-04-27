@@ -86,8 +86,13 @@ export default {
     loadTasks () {
       this.isProcessing = true
       this.errorMessage = ''
+        
+      const apiUrl = process.env.BASE_API_ADDRESS + '/todo/todos';
 
-    const apiUrl = process.env.BASE_API_ADDRESS + '/todo/todos';
+      const headers = {
+        'Ocp-Apim-Subscription-Key': 'YOUR_SUBSCRIPTION_KEY',
+        'Content-Type': 'application/json'
+      }
 
       
       this.$http.get(apiUrl).then(response => {
@@ -107,6 +112,11 @@ export default {
         this.errorMessage = ''
 
         const apiUrl = process.env.BASE_API_ADDRESS + '/todo/todos';
+
+        const headers = {
+          'Ocp-Apim-Subscription-Key': 'YOUR_SUBSCRIPTION_KEY',
+          'Content-Type': 'application/json'
+        }
 
         var task = {
           content: this.newTask
@@ -129,6 +139,11 @@ export default {
       this.isProcessing = true
       this.errorMessage = ''
       const apiUrl = process.env.BASE_API_ADDRESS + '/todo/todos/';
+
+      const headers = {
+        'Ocp-Apim-Subscription-Key': 'YOUR_SUBSCRIPTION_KEY',
+        'Content-Type': 'application/json'
+      }
 
 
       this.$http.delete(apiUrl + item.id).then(response => {
