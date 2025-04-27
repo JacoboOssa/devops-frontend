@@ -92,7 +92,7 @@ export default {
 
 
       const headers = {
-        'Ocp-Apim-Subscription-Key': 'SUBSCRIPTION_KEY',
+        'Ocp-Apim-Subscription-Key': SUBSCRIPTION_KEY,
         'Content-Type': 'application/json'
       }
 
@@ -118,7 +118,7 @@ export default {
 
 
         const headers = {
-          'Ocp-Apim-Subscription-Key': 'SUBSCRIPTION_KEY',
+          'Ocp-Apim-Subscription-Key': SUBSCRIPTION_KEY,
           'Content-Type': 'application/json'
         }
 
@@ -147,7 +147,7 @@ export default {
 
 
       const headers = {
-        'Ocp-Apim-Subscription-Key': 'SUBSCRIPTION_KEY',
+        'Ocp-Apim-Subscription-Key': SUBSCRIPTION_KEY,
         'Content-Type': 'application/json'
       }
 
