@@ -8,7 +8,9 @@ import decode from 'jwt-decode'
  *    and maybe nginx in production (cleaner calls and avoids CORS issues).
  */
 const AUTH_API_ADDRESS = process.env.AUTH_API_ADDRESS || (window.location.protocol + '//' + window.location.host)
-const LOGIN_URL = AUTH_API_ADDRESS + '/auth/login
+const LOGIN_URL = AUTH_API_ADDRESS + '/auth/login'
+const SUBSCRIPTION_KEY = '36ae0aa4-14f2-4d0d-9f02-b3307f324b88'
+
 const ROLE_ADMIN = 'ADMIN'
 
 /**
@@ -56,6 +58,10 @@ export default {
     const params = {
       username: creds.username,
       password: creds.password
+      
+    }
+    const headers = {
+      'Ocp-Apim-Subscription-Key': SUBSCRIPTION_KEY
     }
 
     return Vue.http.post(LOGIN_URL, params)
