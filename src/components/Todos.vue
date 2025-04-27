@@ -88,14 +88,16 @@ export default {
       this.errorMessage = ''
         
       const apiUrl = process.env.BASE_API_ADDRESS + '/todo/todos';
+      const SUBSCRIPTION_KEY = 'dcfdab77c599460ea75c84ba90b2a629'
+
 
       const headers = {
-        'Ocp-Apim-Subscription-Key': 'YOUR_SUBSCRIPTION_KEY',
+        'Ocp-Apim-Subscription-Key': 'SUBSCRIPTION_KEY',
         'Content-Type': 'application/json'
       }
 
       
-      this.$http.get(apiUrl).then(response => {
+      this.$http.get(apiUrl,{ headers }).then(response => {
         for (var i in response.body) {
           this.tasks.push(response.body[i])
         }
@@ -112,9 +114,11 @@ export default {
         this.errorMessage = ''
 
         const apiUrl = process.env.BASE_API_ADDRESS + '/todo/todos';
+        const SUBSCRIPTION_KEY = 'dcfdab77c599460ea75c84ba90b2a629'
+
 
         const headers = {
-          'Ocp-Apim-Subscription-Key': 'YOUR_SUBSCRIPTION_KEY',
+          'Ocp-Apim-Subscription-Key': 'SUBSCRIPTION_KEY',
           'Content-Type': 'application/json'
         }
 
@@ -122,7 +126,7 @@ export default {
           content: this.newTask
         }
 
-        this.$http.post(apiUrl, task).then(response => {
+        this.$http.post(apiUrl, task,{ headers }).then(response => {
           this.newTask = ''
           this.isProcessing = false
           this.tasks.push(task)
@@ -139,14 +143,16 @@ export default {
       this.isProcessing = true
       this.errorMessage = ''
       const apiUrl = process.env.BASE_API_ADDRESS + '/todo/todos/';
+      const SUBSCRIPTION_KEY = 'dcfdab77c599460ea75c84ba90b2a629'
+
 
       const headers = {
-        'Ocp-Apim-Subscription-Key': 'YOUR_SUBSCRIPTION_KEY',
+        'Ocp-Apim-Subscription-Key': 'SUBSCRIPTION_KEY',
         'Content-Type': 'application/json'
       }
 
 
-      this.$http.delete(apiUrl + item.id).then(response => {
+      this.$http.delete(apiUrl + item.id,{ headers }).then(response => {
         this.isProcessing = false
         this.tasks.splice(index, 1)
       }, error => {
