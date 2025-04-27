@@ -68,6 +68,7 @@ export default {
     return Vue.http.post(LOGIN_URL, params, { headers })
       .then((response) => {
         this._storeToken(response)
+        console.log(LOGIN_URL)
 
         if (redirect) {
           router.push({ name: redirect })
