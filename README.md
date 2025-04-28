@@ -106,3 +106,35 @@ The project includes a custom Nginx configuration (`nginx.conf`) that:
 ## License
 
 This project is part of a microservices architecture example.
+
+## Adding the Pipeline to Azure DevOps
+
+To set up the CI/CD pipeline for this project in Azure DevOps, follow these steps:
+
+### 1. Create a New Pipeline
+
+1. Navigate to your Azure DevOps project.
+2. Go to the "Pipelines" section and click on "New Pipeline."
+3. Select the repository where your code is hosted (e.g., GitHub, Azure Repos).
+4. Choose the option to configure the pipeline using an existing YAML file.
+5. Select the `azure-pipelines.yml` file from your repository.
+
+### 2. Set Up Service Connections
+
+1. Go to "Project Settings" > "Service Connections."
+2. Create a new service connection for Azure Container Registry (ACR) if not already set up.
+3. Ensure the service connection name matches the one referenced in the `azure-pipelines.yml` file (e.g., `dockerRegistryServiceConnection`).
+
+### 3. Configure Pipeline Variables
+
+1. In the pipeline settings, add the required variables:
+   - `acrLoginServer`: The login server for your ACR (e.g., `testacrgyvpcp.azurecr.io`).
+   - `containerAppName`: The name of your Azure Container App (e.g., `test-frontend-ca`).
+   - `resourceGroupName`: The Azure resource group name (e.g., `rg-app-testing`).
+
+### 4. Run the Pipeline
+
+1. Save and run the pipeline.
+2. Monitor the pipeline's progress to ensure it builds the Docker image, pushes it to ACR, and deploys it to the Azure Container App.
+
+By following these steps, you can set up and run the CI/CD pipeline for this project in Azure DevOps.
